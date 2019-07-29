@@ -1,4 +1,4 @@
-FROM python:3.6-slim
+FROM python:3.6.8-slim
 
 SHELL ["/bin/bash", "-c"]
 
@@ -16,9 +16,15 @@ RUN apt-get update && \
   apt-get install -y gnupg1 && \
   apt-get install -y curl
 
-RUN curl --insecure https://packages.microsoft.com/keys/microsoft.asc | apt-key add -
-RUN curl https://packages.microsoft.com/config/debian/9/prod.list > /etc/apt/sources.list.d/mssql-release.list
-RUN apt-get update && ACCEPT_EULA=Y apt-get install -y msodbcsql17 unixodbc-dev
+RUN apt-get update \
+    && apt-get -y install unixodbc-dev \
+    && pip install pyodbc \
+    && apt-get -y install apt-transport-https \
+    && apt-get -y install gnupg \
+    && curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - \
+    && curl https://packages.microsoft.com/config/debian/9/prod.list > /etc/apt/sources.list.d/mssql-release.list \
+    && apt-get update \
+    && ACCEPT_EULA=Y apt-get install -y msodbcsql17 unixodbc-dev
 
 WORKDIR /app
 
