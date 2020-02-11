@@ -33,9 +33,10 @@ mattermostwrapper==2.1
 colorhash==1.0.2
 spacy
 SQLAlchemy==1.2.8
-Flask-Admin==1.5.3
+Flask-Admin==1.5.5
 Flask-SQLAlchemy
-Flask-Security>=1.7.5
+flask-talisman
+flask-security-too
 psycopg2==2.7.5
 alembic==0.9.10
 pandas==0.23.1
@@ -43,5 +44,5 @@ sklearn-crfsuite
 scipy
 openpyxl
 Pillow
-pyodbc==4.0.24
+pyodbc==4.0.30
 requests-futures==0.9.9
